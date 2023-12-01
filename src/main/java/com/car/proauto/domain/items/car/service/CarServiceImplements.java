@@ -43,14 +43,15 @@ public class CarServiceImplements implements CarService {
     public List<CarDto> getAllCarsByManufacturer(String manufacturer){
         List<CarModel> carModel = carRepository.findAllCarsByManufacturer(manufacturer);
         return carModel.stream()
-                .map(CarMapper::toDtoCar)
+                .map(carMapper::toDtoCar)
                 .toList();
     }
 
     @Override
     public CarDto getCarById(Long id) {
-        CarModel carModel = carRepository.findById(id);
-        return CarMapper.toDtoCar(carModel);
+        CarModel carModel = carRepository.findById(id)
+                .orElseThrow();
+        return carMapper.toDtoCar(carModel);
     }
 
     @Override

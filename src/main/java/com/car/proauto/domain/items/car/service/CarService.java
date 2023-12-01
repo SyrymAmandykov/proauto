@@ -10,5 +10,5 @@ public interface CarService {
     List<CarDto> getAllCarsByManufacturer(String manufacturer);
     CarDto getCarById(Long id);
     CarDto updateCar(Long id,String manufacturer,String name,String description,Double price,Integer yearOfRelease,Double volume,Boolean emergency);
-    void deleteCar(Long id);
+    void deleteCarById(Long id);
 }

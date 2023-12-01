@@ -44,19 +44,21 @@ public class UserServiceImplements implements UserService {
     public List<UserDto> getAllUsers() {
         List<UserModel> userModel = userRepository.findAll();
         return userModel.stream()
-                .map(UserMapper::toDtoUser)
+                .map(userMapper::toDtoUser)
                 .toList();
     }
 
     @Override
     public UserDto getUserById(Long id) {
-        UserModel userModel = userRepository.findById(id);
+        UserModel userModel = userRepository.findById(id)
+                .orElseThrow();
         return userMapper.toDtoUser(userModel);
     }
 
     @Override
     public UserPublicDto getUserByDetails(Long id){
-        UserModel userModel = userRepository.findById(id);
+        UserModel userModel = userRepository.findById(id)
+                .orElseThrow();
         return userMapper.toPublicUser(userModel);
     }
 

@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface UserService {
 
+    UserDto addNewUser(String login, String password, String name, String lastName);
+
     List<UserDto> getAllUsers();
 
     UserDto getUserById(Long id);
